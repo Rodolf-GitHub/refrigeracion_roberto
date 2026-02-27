@@ -1,0 +1,26 @@
+:root {
+  /* Primary (Azul tecnológico) */
+  --primary-100: #0d5db8; /* Azul principal del logo */
+  --primary-200: #2f7ed8; /* Hover / enlaces */
+  --primary-300: #a9c9f5; /* Fondos suaves / badges */
+
+  /* Accent (Amarillo energía) */
+  --accent-100: #ffd200; /* Amarillo principal del logo */
+  --accent-200: #c9a400; /* Hover / texto destacado */
+  --accent-300: #fff2b3; /* Fondos sutiles */
+
+  /* Texto */
+  --text-100: #0b1a2b; /* Texto principal (mejor que negro puro) */
+  --text-200: #3b4a5a; /* Texto secundario */
+  --text-300: #6b7a8a; /* Placeholders / hints */
+
+  /* Backgrounds */
+  --bg-100: #ffffff; /* Fondo principal */
+  --bg-200: #f4f8fc; /* Secciones */
+  --bg-300: #e6eef7; /* Cards / panels */
+
+  /* Estados */
+  --success: #2ead6d;
+  --warning: #ffd200;
+  --error: #d64545;
+}
