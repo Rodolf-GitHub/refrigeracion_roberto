@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { Phone, Mail, MapPin } from 'lucide-vue-next'
+import { Phone, Mail, MapPin, Users, Wrench, FolderOpen } from 'lucide-vue-next'
 </script>
 
 <template>
@@ -17,32 +17,35 @@ import { Phone, Mail, MapPin } from 'lucide-vue-next'
 
         <div>
           <h3 class="text-sm font-bold mb-2 text-yellow-400">Enlaces</h3>
-          <nav class="space-y-1 text-xs">
-            <div>
-              <RouterLink to="/" class="text-gray-300 hover:text-yellow-400 transition"
-                >Inicio</RouterLink
-              >
-            </div>
-            <div>
-              <RouterLink to="/nosotros" class="text-gray-300 hover:text-yellow-400 transition"
-                >Nosotros</RouterLink
-              >
-            </div>
-            <div>
-              <RouterLink to="/servicios" class="text-gray-300 hover:text-yellow-400 transition"
-                >Servicios</RouterLink
-              >
-            </div>
-            <div>
-              <RouterLink to="/proyectos" class="text-gray-300 hover:text-yellow-400 transition"
-                >Proyectos</RouterLink
-              >
-            </div>
-            <div>
-              <RouterLink to="/contacto" class="text-gray-300 hover:text-yellow-400 transition"
-                >Contacto</RouterLink
-              >
-            </div>
+          <nav class="flex items-center gap-3 text-xs overflow-x-auto whitespace-nowrap pb-1">
+            <RouterLink
+              to="/nosotros"
+              class="inline-flex items-center gap-1 text-gray-300 hover:text-yellow-400 transition"
+            >
+              <Users :size="14" />
+              Nosotros
+            </RouterLink>
+            <RouterLink
+              to="/servicios"
+              class="inline-flex items-center gap-1 text-gray-300 hover:text-yellow-400 transition"
+            >
+              <Wrench :size="14" />
+              Servicios
+            </RouterLink>
+            <RouterLink
+              to="/proyectos"
+              class="inline-flex items-center gap-1 text-gray-300 hover:text-yellow-400 transition"
+            >
+              <FolderOpen :size="14" />
+              Proyectos
+            </RouterLink>
+            <RouterLink
+              to="/contacto"
+              class="inline-flex items-center gap-1 text-gray-300 hover:text-yellow-400 transition"
+            >
+              <Phone :size="14" />
+              Contacto
+            </RouterLink>
           </nav>
         </div>
 

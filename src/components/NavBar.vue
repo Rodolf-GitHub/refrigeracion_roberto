@@ -1,17 +1,38 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { Menu, X, Phone, Mail } from 'lucide-vue-next'
+import { Phone, Mail, Users, Wrench, FolderOpen } from 'lucide-vue-next'
 
-const isMenuOpen = ref(false)
+const installAvailable = ref(false)
+let deferredPrompt: BeforeInstallPromptEvent | null = null
 
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>
 }
 
-const closeMenu = () => {
-  isMenuOpen.value = false
+const onBeforeInstallPrompt = (event: Event) => {
+  event.preventDefault()
+  deferredPrompt = event as BeforeInstallPromptEvent
+  installAvailable.value = true
 }
+
+const handleInstall = async () => {
+  if (!deferredPrompt) return
+
+  await deferredPrompt.prompt()
+  await deferredPrompt.userChoice
+  deferredPrompt = null
+  installAvailable.value = false
+}
+
+onMounted(() => {
+  window.addEventListener('beforeinstallprompt', onBeforeInstallPrompt)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('beforeinstallprompt', onBeforeInstallPrompt)
+})
 </script>
 
 <template>
@@ -37,50 +58,39 @@ const closeMenu = () => {
   </div>
 
   <nav class="bg-gradient-to-r from-blue-700 to-blue-500 sticky top-0 md:top-0 z-50 shadow-lg">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <RouterLink
-          to="/"
-          class="hover:scale-105 transition-transform duration-300"
-          @click="closeMenu"
-        >
-          <img src="/logo.png" alt="Refrigeración Roberto" class="h-14 md:h-16 w-auto" />
+    <div class="max-w-6xl mx-auto px-3 md:px-4 py-2 md:py-3 flex justify-between items-center">
+      <div class="flex items-center gap-2 md:gap-3 min-w-0">
+        <RouterLink to="/" class="hover:scale-105 transition-transform duration-300">
+          <img src="/logo.png" alt="Refrigeración Roberto" class="h-10 md:h-16 w-auto" />
         </RouterLink>
         <RouterLink
           to="/"
-          class="bg-white rounded-lg px-4 py-2 hover:shadow-lg hover:translate-y-[-2px] transition-all duration-300"
-          @click="closeMenu"
+          class="bg-white/95 rounded-lg px-2.5 md:px-4 py-1.5 md:py-2 hover:shadow-lg hover:translate-y-[-2px] transition-all duration-300"
         >
-          <div class="text-sm">
-            <p class="text-blue-700 font-bold text-lg">Refrigeración Roberto</p>
-            <p class="text-yellow-500 font-semibold text-xs tracking-wider">
+          <div class="text-sm leading-tight">
+            <p class="text-blue-700 font-bold text-sm md:text-lg">Refrigeración Roberto</p>
+            <p class="hidden md:block text-yellow-500 font-semibold text-xs tracking-wider">
               Mantenimiento y Reparación
             </p>
           </div>
         </RouterLink>
       </div>
 
-      <button
-        class="md:hidden text-white hover:text-yellow-400 transition-colors"
-        @click="toggleMenu"
-      >
-        <Menu v-if="!isMenuOpen" :size="28" />
-        <X v-else :size="28" />
-      </button>
+      <div class="flex items-center gap-2">
+        <button
+          v-if="installAvailable"
+          @click="handleInstall"
+          class="install-btn inline-flex items-center bg-yellow-400 text-blue-700 px-3 md:px-4 py-1.5 md:py-2 rounded-lg font-bold hover:bg-yellow-500 transition-all duration-300 shadow-md text-[11px] md:text-sm whitespace-nowrap"
+        >
+          Instalar aplicación
+        </button>
+      </div>
 
-      <ul
-        class="absolute md:static top-full left-0 right-0 md:flex list-none m-0 p-0 gap-1 items-center"
-        :class="[
-          'md:bg-transparent',
-          isMenuOpen ? 'max-h-96 bg-blue-700 shadow-lg' : 'max-h-0 overflow-hidden md:max-h-none',
-          'transition-all duration-300',
-        ]"
-      >
+      <ul class="hidden md:flex list-none m-0 p-0 gap-1 items-center">
         <li>
           <RouterLink
             to="/"
             class="block px-5 py-3 text-white font-medium rounded-md transition-all duration-300 hover:bg-white hover:bg-opacity-10 hover:text-yellow-400 relative group"
-            @click="closeMenu"
           >
             Inicio
             <span
@@ -92,7 +102,6 @@ const closeMenu = () => {
           <RouterLink
             to="/nosotros"
             class="block px-5 py-3 text-white font-medium rounded-md transition-all duration-300 hover:bg-white hover:bg-opacity-10 hover:text-yellow-400 relative group"
-            @click="closeMenu"
           >
             Nosotros
             <span
@@ -104,7 +113,6 @@ const closeMenu = () => {
           <RouterLink
             to="/servicios"
             class="block px-5 py-3 text-white font-medium rounded-md transition-all duration-300 hover:bg-white hover:bg-opacity-10 hover:text-yellow-400 relative group"
-            @click="closeMenu"
           >
             Servicios
             <span
@@ -116,7 +124,6 @@ const closeMenu = () => {
           <RouterLink
             to="/proyectos"
             class="block px-5 py-3 text-white font-medium rounded-md transition-all duration-300 hover:bg-white hover:bg-opacity-10 hover:text-yellow-400 relative group"
-            @click="closeMenu"
           >
             Proyectos
             <span
@@ -128,7 +135,6 @@ const closeMenu = () => {
           <RouterLink
             to="/contacto"
             class="block px-5 py-3 text-white font-medium rounded-md transition-all duration-300 hover:bg-white hover:bg-opacity-10 hover:text-yellow-400 relative group"
-            @click="closeMenu"
           >
             Contacto
             <span
@@ -139,4 +145,67 @@ const closeMenu = () => {
       </ul>
     </div>
   </nav>
+
+  <nav class="md:hidden bg-blue-700 border-t border-blue-500 sticky top-[56px] -mt-px z-40 shadow">
+    <div class="px-2 py-2 flex items-center justify-between gap-1 overflow-x-auto">
+      <RouterLink to="/nosotros" class="mobile-link">
+        <Users :size="16" />
+        <span>Nosotros</span>
+      </RouterLink>
+      <RouterLink to="/servicios" class="mobile-link">
+        <Wrench :size="16" />
+        <span>Servicios</span>
+      </RouterLink>
+      <RouterLink to="/proyectos" class="mobile-link">
+        <FolderOpen :size="16" />
+        <span>Proyectos</span>
+      </RouterLink>
+      <RouterLink to="/contacto" class="mobile-link">
+        <Phone :size="16" />
+        <span>Contacto</span>
+      </RouterLink>
+    </div>
+  </nav>
 </template>
+
+<style scoped>
+.mobile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 0.5rem 0.55rem;
+  white-space: nowrap;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.mobile-link:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.install-btn {
+  animation: softPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes softPulse {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  }
+}
+</style>

@@ -6,12 +6,11 @@ const formData = ref({
   name: '',
   email: '',
   phone: '',
-  company: '',
   message: '',
 })
 
 const handleSubmit = () => {
-  const message = `Nombre: ${formData.value.name}%0AEmail: ${formData.value.email}%0ATeléfono: ${formData.value.phone}%0AEmpresa: ${formData.value.company}%0AMensaje: ${formData.value.message}`
+  const message = `Nombre: ${formData.value.name}%0AEmail: ${formData.value.email}%0ATeléfono: ${formData.value.phone}%0AMensaje: ${formData.value.message}`
   window.open(
     `mailto:refrigeracionroberto@gmail.com?subject=Consulta Refrigeración Roberto&body=${message}`,
   )
@@ -109,16 +108,6 @@ const handleSubmit = () => {
                 placeholder="Teléfono de contacto"
               />
             </div>
-          </div>
-
-          <div class="mb-6">
-            <label class="block text-blue-700 font-bold mb-2">Empresa</label>
-            <input
-              v-model="formData.company"
-              type="text"
-              class="w-full px-4 py-2 border-2 border-blue-200 rounded-lg focus:border-blue-700 focus:outline-none transition-colors"
-              placeholder="Nombre de tu empresa (opcional)"
-            />
           </div>
 
           <div class="mb-6">
