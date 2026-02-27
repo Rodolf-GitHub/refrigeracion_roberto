@@ -27,7 +27,7 @@ const services = ref([
   {
     title: 'Instalación y Servicio Técnico',
     icon: '🛠️',
-    image: '/heladeras/verificando_gas_nevera.jpg',
+    image: '/aires/montado_aire.jpg',
     items: [
       'Instalación de equipos nuevos',
       'Desinstalación y reinstalación segura',

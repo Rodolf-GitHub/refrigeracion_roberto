@@ -21,7 +21,7 @@ import { Award, Wrench, ShieldCheck, Clock3 } from 'lucide-vue-next'
         <h2 class="text-3xl font-bold text-blue-700 mb-8">Nuestra Empresa</h2>
         <div class="grid md:grid-cols-2 gap-8 items-stretch">
           <img
-            src="/aires/llenado_gas_aire.jpg"
+            src="/aires/montado_aire.jpg"
             alt="Servicio técnico de aire acondicionado"
             class="w-full h-full min-h-[260px] object-cover rounded-lg shadow-md"
           />

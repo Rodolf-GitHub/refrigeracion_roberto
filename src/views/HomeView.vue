@@ -5,6 +5,7 @@ import { Thermometer, Snowflake, Wrench } from 'lucide-vue-next'
 const heroImages = [
   '/aires/limpieza_aire.jpg',
   '/aires/llenado_gas_aire.jpg',
+  '/aires/montado_aire.jpg',
   '/heladeras/reparando_nevera.jpg',
   '/heladeras/verificando_gas_nevera.jpg',
 ]

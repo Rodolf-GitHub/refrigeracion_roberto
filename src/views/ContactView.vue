@@ -12,7 +12,7 @@ const formData = ref({
 const handleSubmit = () => {
   const message = `Nombre: ${formData.value.name}%0AEmail: ${formData.value.email}%0ATeléfono: ${formData.value.phone}%0AMensaje: ${formData.value.message}`
   window.open(
-    `mailto:refrigeracionroberto@gmail.com?subject=Consulta Refrigeración Roberto&body=${message}`,
+    `mailto:labradaroberto23@gmail.com?subject=Consulta Refrigeración Roberto&body=${message}`,
   )
 }
 </script>
@@ -53,9 +53,9 @@ const handleSubmit = () => {
             </div>
             <h3 class="text-2xl font-bold text-blue-700 mb-2">Email</h3>
             <a
-              href="mailto:refrigeracionroberto@gmail.com"
+              href="mailto:labradaroberto23@gmail.com"
               class="text-yellow-400 font-bold text-lg hover:underline break-all"
-              >refrigeracionroberto@gmail.com</a
+              >labradaroberto23@gmail.com</a
             >
           </div>
         </div>

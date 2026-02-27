@@ -59,9 +59,9 @@ import { Phone, Mail, MapPin, Users, Wrench, FolderOpen } from 'lucide-vue-next'
             <div class="flex items-center gap-2">
               <Mail :size="14" class="text-yellow-400" />
               <a
-                href="mailto:refrigeracionroberto@gmail.com"
+                href="mailto:labradaroberto23@gmail.com"
                 class="text-gray-300 hover:text-yellow-400 transition"
-                >refrigeracionroberto@gmail.com</a
+                >labradaroberto23@gmail.com</a
               >
             </div>
             <div class="flex items-start gap-2">
