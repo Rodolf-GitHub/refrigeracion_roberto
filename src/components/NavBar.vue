@@ -49,9 +49,9 @@ onBeforeUnmount(() => {
       <div class="flex items-center gap-2">
         <Mail :size="14" class="text-yellow-400" />
         <a
-          href="mailto:refrigeracionroberto@gmail.com"
+          href="mailto:labradaroberto23@gmail.com"
           class="text-yellow-400 font-bold hover:underline"
-          >refrigeracionroberto@gmail.com</a
+          >labradaroberto23@gmail.com</a
         >
       </div>
     </div>
