@@ -9,7 +9,7 @@ interface Proyecto {
   imagen: string
 }
 
-const endpoint = 'http://127.0.0.1:8000/api/proyectos/'
+const endpoint = 'https://api.refrigeracionroberto.com/api/proyectos/'
 const proyectos = ref<Proyecto[]>([])
 const loading = ref(true)
 const error = ref('')
