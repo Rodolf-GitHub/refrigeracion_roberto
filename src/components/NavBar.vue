@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
-import { Phone, Mail, Users, Wrench, FolderOpen, Home, MessageCircle } from 'lucide-vue-next'
+import {
+  Phone,
+  Mail,
+  Users,
+  Wrench,
+  FolderOpen,
+  Home,
+  MessageCircle,
+  KeyRound,
+} from 'lucide-vue-next'
 
 const route = useRoute()
 const mobileMenuOpen = ref(false)
@@ -27,6 +36,24 @@ const toggleMenu = () => {
 
 const closeMenu = () => {
   mobileMenuOpen.value = false
+}
+
+// Admin triple-click logic
+const adminClickCount = ref(0)
+let adminClickTimer: ReturnType<typeof setTimeout> | null = null
+const ADMIN_URL = 'https://api.refrigeracionroberto.com/admin'
+
+const handleAdminClick = () => {
+  adminClickCount.value++
+  if (adminClickTimer) clearTimeout(adminClickTimer)
+  if (adminClickCount.value >= 3) {
+    adminClickCount.value = 0
+    window.open(ADMIN_URL, '_blank', 'noopener,noreferrer')
+    return
+  }
+  adminClickTimer = setTimeout(() => {
+    adminClickCount.value = 0
+  }, 1000)
 }
 
 // Close menu on route change
@@ -137,6 +164,17 @@ onBeforeUnmount(() => {
               class="absolute bottom-0 left-0 w-0 h-1 bg-yellow-400 rounded group-hover:w-full transition-all duration-300"
             ></span>
           </RouterLink>
+        </li>
+        <!-- Admin key (desktop) -->
+        <li>
+          <button
+            @click="handleAdminClick"
+            class="block px-3 py-3 text-white/40 hover:text-yellow-400 rounded-md transition-all duration-300 hover:bg-white/5"
+            aria-label="Panel de administración"
+            title="Admin"
+          >
+            <KeyRound :size="16" />
+          </button>
         </li>
       </ul>
     </div>
@@ -269,11 +307,20 @@ onBeforeUnmount(() => {
             </a>
           </div>
 
+          <!-- Admin link (triple click) -->
+          <button
+            @click="handleAdminClick"
+            class="mt-5 w-10 h-10 inline-flex items-center justify-center rounded-full bg-white/10 text-white/40 hover:text-yellow-400 hover:bg-white/15 transition-all duration-300 border border-white/10 hover:border-yellow-400/30 mx-auto"
+            aria-label="Admin"
+          >
+            <KeyRound :size="18" />
+          </button>
+
           <!-- Install button inside mobile menu -->
           <button
             v-if="installAvailable"
             @click="handleInstall"
-            class="mt-5 w-full install-btn inline-flex items-center justify-center bg-yellow-400 text-blue-900 px-4 py-3 rounded-xl font-bold hover:bg-yellow-300 transition-all duration-300 shadow-lg text-sm"
+            class="mt-3 w-full install-btn inline-flex items-center justify-center bg-yellow-400 text-blue-900 px-4 py-3 rounded-xl font-bold hover:bg-yellow-300 transition-all duration-300 shadow-lg text-sm"
           >
             Instalar aplicación
           </button>
