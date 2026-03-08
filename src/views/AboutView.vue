@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import { Award, Wrench, ShieldCheck, Clock3 } from 'lucide-vue-next'
+import PageHero from '@/components/PageHero.vue'
 </script>
 
 <template>
   <div class="w-full">
-    <section class="bg-gradient-to-r from-blue-700 to-blue-500 text-white py-16">
-      <div class="max-w-6xl mx-auto px-4">
-        <div class="flex items-center gap-4 mb-4">
-          <img src="/logo.png" alt="Refrigeración Roberto" class="h-16 w-auto" />
-          <h1 class="text-4xl md:text-5xl font-bold">Nosotros</h1>
-        </div>
-        <p class="text-xl mt-4 text-gray-100">
-          Refrigeración Roberto: experiencia, compromiso y confianza
-        </p>
-      </div>
-    </section>
+    <PageHero
+      badge="Quiénes Somos"
+      title="Nosotros"
+      subtitle="Refrigeración Roberto: experiencia, compromiso y confianza"
+    />
 
     <section class="py-16 bg-white">
       <div class="max-w-6xl mx-auto px-4">

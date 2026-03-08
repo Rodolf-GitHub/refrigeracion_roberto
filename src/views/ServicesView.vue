@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import PageHero from '@/components/PageHero.vue'
 
 const services = ref([
   {
@@ -40,14 +41,11 @@ const services = ref([
 
 <template>
   <div class="w-full">
-    <section class="bg-gradient-to-r from-blue-700 to-blue-500 text-white py-16">
-      <div class="max-w-6xl mx-auto px-4">
-        <h1 class="text-4xl md:text-5xl font-bold">Servicios</h1>
-        <p class="text-xl mt-4 text-gray-100">
-          Mantenimiento y reparación de aire acondicionado y neveras
-        </p>
-      </div>
-    </section>
+    <PageHero
+      badge="Lo Que Ofrecemos"
+      title="Servicios"
+      subtitle="Mantenimiento y reparación de aire acondicionado y neveras"
+    />
 
     <section class="py-16 bg-gray-50">
       <div class="max-w-6xl mx-auto px-4">

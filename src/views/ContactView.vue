@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { MapPin, Phone, Mail } from 'lucide-vue-next'
+import PageHero from '@/components/PageHero.vue'
 
 const formData = ref({
   name: '',
@@ -19,14 +20,11 @@ const handleSubmit = () => {
 
 <template>
   <div class="w-full">
-    <section class="bg-gradient-to-r from-blue-700 to-blue-500 text-white py-16">
-      <div class="max-w-6xl mx-auto px-4">
-        <h1 class="text-4xl md:text-5xl font-bold">Contacto</h1>
-        <p class="text-xl mt-4 text-gray-100">
-          Estamos listos para ayudarte con tus equipos de refrigeración
-        </p>
-      </div>
-    </section>
+    <PageHero
+      badge="Hablemos"
+      title="Contacto"
+      subtitle="Estamos listos para ayudarte con tus equipos de refrigeración"
+    />
 
     <section class="py-16 bg-gray-50">
       <div class="max-w-6xl mx-auto px-4">

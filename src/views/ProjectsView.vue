@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { ChevronLeft, ChevronRight, Calendar, Eye, X } from 'lucide-vue-next'
+import PageHero from '@/components/PageHero.vue'
 
 interface Proyecto {
   id: number
@@ -84,51 +85,11 @@ onMounted(cargarProyectos)
 <template>
   <div class="w-full min-h-screen bg-[#f4f8fc]">
     <!-- ── HEADER ─────────────────────────────── -->
-    <header
-      class="relative overflow-hidden"
-      style="background: linear-gradient(135deg, #0d5db8 0%, #2f7ed8 50%, #0d5db8 100%)"
-    >
-      <!-- Blobs decorativos -->
-      <div class="pointer-events-none absolute inset-0">
-        <div class="blob blob-yellow" />
-        <div class="blob blob-blue" />
-        <div class="blob blob-white" />
-      </div>
-
-      <div class="relative w-full px-6 md:px-10 py-20 text-center">
-        <span
-          class="inline-block px-4 py-2 bg-[#ffd200] text-[#0b1a2b] text-sm font-bold rounded-full mb-6 shadow-lg"
-        >
-          Portafolio de Proyectos
-        </span>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-          Nuestros Proyectos
-        </h1>
-        <p class="text-lg md:text-xl text-[#a9c9f5] max-w-2xl mx-auto mb-10">
-          Descubre nuestra trayectoria a través de proyectos que transforman espacios y crean valor
-          para nuestros clientes.
-        </p>
-
-        <!-- Barra de búsqueda eliminada -->
-      </div>
-
-      <!-- Ola divisora -->
-      <div class="absolute bottom-0 left-0 right-0 leading-none">
-        <svg
-          viewBox="0 0 1440 120"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-full block"
-          preserveAspectRatio="none"
-          style="display: block; margin-bottom: -1px"
-        >
-          <path
-            d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-            fill="#f4f8fc"
-          />
-        </svg>
-      </div>
-    </header>
+    <PageHero
+      badge="Portafolio de Proyectos"
+      title="Nuestros Proyectos"
+      subtitle="Descubre nuestra trayectoria a través de proyectos que transforman espacios y crean valor para nuestros clientes."
+    />
 
     <!-- ── CONTENIDO ───────────────────────────── -->
     <section class="w-full px-6 md:px-10 py-12">
@@ -336,7 +297,9 @@ onMounted(cargarProyectos)
               </p>
 
               <!-- Botón -->
-              <button class="btn-ver">Ver Proyecto Completo</button>
+              <button class="btn-ver" @click="openLightbox(proyecto, 0)">
+                Ver Proyecto Completo
+              </button>
             </div>
           </article>
         </div>
@@ -351,10 +314,24 @@ onMounted(cargarProyectos)
         </h2>
         <p class="text-[#a9c9f5] mb-8 text-lg">Contactanos y te damos solución rápida</p>
         <a
-          href="/contacto"
-          class="inline-block px-8 py-4 bg-[#ffd200] text-[#0b1a2b] font-bold rounded-xl hover:bg-[#c9a400] transition-all duration-300 hover:scale-105 shadow-lg"
+          href="/contacto#formulario"
+          class="inline-flex items-center gap-2 px-8 py-4 bg-[#ffd200] text-[#0b1a2b] font-bold rounded-xl hover:bg-[#c9a400] transition-all duration-300 hover:scale-105 shadow-lg"
         >
-          Solicitar Presupuesto
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            />
+          </svg>
+          Contactanos
         </a>
       </div>
     </section>
@@ -416,36 +393,7 @@ onMounted(cargarProyectos)
 </template>
 
 <style scoped>
-/* ── Blobs decorativos del header ─────────── */
-.blob {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(60px);
-}
-.blob-yellow {
-  top: 0;
-  right: 0;
-  width: 24rem;
-  height: 24rem;
-  background: rgba(255, 210, 0, 0.12);
-  transform: translate(50%, -50%);
-}
-.blob-blue {
-  bottom: 0;
-  left: 0;
-  width: 20rem;
-  height: 20rem;
-  background: rgba(169, 201, 245, 0.2);
-  transform: translate(-50%, 50%);
-}
-.blob-white {
-  top: 50%;
-  left: 50%;
-  width: 16rem;
-  height: 16rem;
-  background: rgba(255, 255, 255, 0.06);
-  transform: translate(-50%, -50%);
-}
+/* ── Blobs: ya en PageHero ───────────────── */
 
 /* ── Card ─────────────────────────────────── */
 .project-card {
