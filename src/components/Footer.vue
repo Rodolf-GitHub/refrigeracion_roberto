@@ -5,7 +5,7 @@ import { Phone, Mail, MapPin, Users, Wrench, FolderOpen } from 'lucide-vue-next'
 
 <template>
   <footer class="bg-blue-900 text-white mt-16">
-    <div class="max-w-6xl mx-auto px-4 py-6">
+    <div class="w-full px-6 md:px-10 py-6">
       <div class="grid md:grid-cols-3 gap-6 mb-6">
         <div class="flex flex-col items-start gap-3">
           <h3 class="text-lg font-bold text-yellow-400">Refrigeración Roberto</h3>

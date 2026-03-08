@@ -36,8 +36,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="bg-blue-900 text-white py-2 px-4 text-xs sticky top-0 z-50 shadow-md hidden md:block">
-    <div class="max-w-6xl mx-auto flex justify-between items-center gap-6">
+  <div
+    class="bg-blue-900 text-white py-2 px-6 md:px-10 text-xs sticky top-0 z-50 shadow-md hidden md:block"
+  >
+    <div class="w-full flex justify-between items-center gap-6">
       <div class="flex gap-8">
         <div class="flex items-center gap-2">
           <Phone :size="14" class="text-yellow-400" />
@@ -58,7 +60,7 @@ onBeforeUnmount(() => {
   </div>
 
   <nav class="bg-gradient-to-r from-blue-700 to-blue-500 sticky top-0 md:top-0 z-50 shadow-lg">
-    <div class="max-w-6xl mx-auto px-3 md:px-4 py-2 md:py-3 flex justify-between items-center">
+    <div class="w-full px-6 md:px-10 py-2 md:py-3 flex justify-between items-center">
       <div class="flex items-center gap-2 md:gap-3 min-w-0">
         <RouterLink to="/" class="hover:scale-105 transition-transform duration-300">
           <img src="/logo.png" alt="Refrigeración Roberto" class="h-10 md:h-16 w-auto" />
