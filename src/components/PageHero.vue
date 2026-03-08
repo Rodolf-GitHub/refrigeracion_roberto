@@ -18,7 +18,7 @@ defineProps<{
       <div class="blob blob-white" />
     </div>
 
-    <div class="relative w-full px-6 md:px-10 py-20 text-center">
+    <div class="relative z-10 w-full px-6 md:px-10 pt-20 pb-36 text-center">
       <span
         v-if="badge"
         class="inline-block px-4 py-2 bg-[#ffd200] text-[#0b1a2b] text-sm font-bold rounded-full mb-6 shadow-lg"
@@ -36,7 +36,7 @@ defineProps<{
     </div>
 
     <!-- Ola divisora -->
-    <div class="absolute bottom-0 left-0 right-0 leading-none">
+    <div class="absolute bottom-0 left-0 right-0 leading-none z-0">
       <svg
         viewBox="0 0 1440 120"
         fill="none"
